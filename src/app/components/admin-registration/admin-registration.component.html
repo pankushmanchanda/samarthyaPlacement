@@ -1,0 +1,248 @@
+<md-card>
+  <h2 class="text-center title">Register Coordinator</h2>
+
+  <form class="registrationForm" [formGroup]="userForm" (ngSubmit)="save(userForm)">
+    <table>
+      <tr>
+        <!-- Name icon-->
+        <td>
+          <i class="material-icons">account_box</i>
+        </td>
+        <!--Name -->
+        <td colspan="2">
+          <md-input-container class="full-width">
+            <input formControlName="nameControl" mdInput placeholder="Name">
+          </md-input-container>
+          <!-- Name required validation-->
+          <small *ngIf="userForm.get('nameControl').hasError('required') && userForm.get('nameControl').touched">
+          Name is required
+        </small>
+          <!-- Name pattern validation-->
+          <small *ngIf="userForm.get('nameControl').hasError('pattern') && userForm.get('nameControl').touched">
+          Name should be more than 2 alphabets
+        </small>
+        </td>
+      </tr>
+      <tr>
+        <!-- Gender icon-->
+        <td>
+          <i class="material-icons">wc</i>
+        </td>
+        <!-- Gender radio buttons-->
+        <td colspan="2">
+          <md-radio-group formControlName="genderControl">
+            <md-radio-button value="male">Male</md-radio-button>
+            <md-radio-button value="female">female</md-radio-button>
+          </md-radio-group><br>
+          <!-- Name required validation-->
+          <small *ngIf="userForm.get('genderControl').hasError('required') && userForm.get('genderControl').touched">
+          Gender is required
+        </small>
+        </td>
+      </tr>
+      <tr>
+        <!-- Email icon-->
+        <td>
+          <i class="material-icons">email</i>
+        </td>
+        <!-- Email-->
+        <td colspan="2">
+          <md-input-container class="full-width">
+            <input formControlName="emailControl" type="text" mdInput placeholder="Email">
+          </md-input-container>
+          <!-- Email required validation-->
+          <small *ngIf="userForm.get('emailControl').hasError('required') && userForm.get('emailControl').touched">
+          Email is required
+        </small>
+          <!-- Email pattern validation-->
+          <!--<small *ngIf="userForm.get('emailControl').hasError('pattern') && userForm.get('emailControl').touched">
+          Invalid email
+        </small>-->
+        </td>
+      </tr>
+      <tr>
+        <!-- Password icon -->
+        <td>
+          <i class="material-icons">lock</i>
+        </td>
+        <!-- Password-->
+        <td colspan="2">
+          <md-input-container class="full-width">
+            <input formControlName="passwordControl" mdInput minlength="8" placeholder="Password" type="password">
+          </md-input-container>
+          <!-- Password required validation-->
+          <small *ngIf="userForm.get('passwordControl').hasError('required') && userForm.get('passwordControl').touched">
+          Password is required
+        </small>
+           <!--Password length validation-->
+          <!--<small *ngIf="userForm.get('passwordControl').hasError('minlength') && userForm.get('passwordControl').touched">
+          Password should more than 7 character
+        </small> -->
+
+        </td>
+      </tr>
+      <tr>
+        <!-- Confirm password-->
+        <td>
+          <i class="material-icons">lock</i>
+        </td>
+        <!-- Confirm password-->
+        <td colspan="2">
+          <md-input-container class="full-width">
+            <input formControlName="confirmPasswordControl" mdInput minlength="8" placeholder="Confirm Password" type="password">
+          </md-input-container>
+          <!-- Confirm password required validation-->
+          <small *ngIf="userForm.get('confirmPasswordControl').hasError('required') && userForm.get('confirmPasswordControl').touched">
+          Confirm Password is required
+        </small>
+          <!-- Matching password  validation-->
+          <small *ngIf="(!userForm.get('confirmPasswordControl').valid) && userForm.get('confirmPasswordControl').touched">
+          Mismatch Password
+        </small>
+           <!--Confirm Password length validation
+          <small *ngIf="userForm.get('confirmPasswordControl').hasError('minlength') && userForm.get('confirmPasswordControl').touched">
+          Password should more than 7 character
+        </small>-->
+
+        </td>
+      </tr>
+      <tr>
+        <!-- Mobile icon-->
+        <td>
+          <i class="material-icons">phone</i>
+        </td>
+        <!-- Mobile number-->
+        <td colspan="2">
+          <md-input-container class="full-width">
+            <input formControlName="mobileControl" mdInput placeholder="Mobile Number">
+          </md-input-container>
+          <!-- Mobile number required validation-->
+          <small *ngIf="userForm.get('mobileControl').hasError('required') && userForm.get('mobileControl').touched">
+          Mobile Number is required
+        </small>
+          <!-- Mobile number pattern validation-->
+          <small *ngIf="userForm.get('mobileControl').hasError('pattern') && userForm.get('mobileControl').touched">
+          Mobile Number should be 10 digit
+        </small>
+        </td>
+      </tr>
+      <tr>
+        <!-- Role icon-->
+        <td>
+          <i class="material-icons">supervisor_account</i>
+        </td>
+        <!-- Role  -->
+        <td>
+
+          <md2-select formControlName="roleControl" placeholder="Role" [multiple]="true" #selectMultipleControl>
+            <md2-option *ngFor="let currentRole of roles" value="{{currentRole}}">{{currentRole}}</md2-option>
+          </md2-select>
+
+          <!-- Role required validation-->
+          <small *ngIf="userForm.get('roleControl').hasError('required') && userForm.get('roleControl').touched">
+         Role is required
+        </small>
+        </td>
+      </tr>
+      <tr>
+        <!-- Profession icon-->
+        <td>
+          <i class="material-icons">layers</i>
+        </td>
+        <!-- Profession-->
+        <td>
+          <md2-select formControlName="professionControl" placeholder="Profession" [multiple]="true" #selectMultipleControl>
+            <md2-option *ngFor="let currentProfession of professions" value="{{currentProfession}}">{{currentProfession}}</md2-option>
+          </md2-select>
+
+          <!-- Profession required validation-->
+          <small *ngIf="userForm.get('professionControl').hasError('required') && userForm.get('professionControl').touched">
+          Profession is required
+        </small>
+        </td>
+
+      </tr>
+      <tr>
+        <!-- PIN code icon-->
+        <td>
+          <i class="material-icons">my_location</i>
+        </td>
+        <!-- PIN code-->
+        <td colspan="2">
+          <md-input-container class="full-width">
+            <input formControlName="pincodeControl" mdInput  placeholder="PIN Code">
+          </md-input-container>
+          <!-- PIN code required validation-->
+          <small *ngIf="userForm.get('pincodeControl').hasError('required') && userForm.get('pincodeControl').touched">
+          PIN Code is required
+        </small>
+          <!-- PIN code pattern validation-->
+          <small *ngIf="userForm.get('pincodeControl').hasError('pattern') && userForm.get('pincodeControl').touched">
+          PIN Code should be 6 digit
+        </small>
+        </td>
+      </tr>
+      <tr>
+        <!-- Placement center icon-->
+        <td>
+          <i class="material-icons">place</i>
+        </td>
+        <!-- Placement center-->
+        <td>
+          <md-select formControlName="placementControl" ng-model="placementSelect" #placementCenterId class="full-width" placeholder="Placement Center">
+            <md-option *ngFor="let center of placementCenters" value="{{center}}">{{center}}</md-option>
+          </md-select>
+          <!-- Placement center required validation-->
+          <small *ngIf="userForm.get('placementControl').hasError('required') && userForm.get('placementControl').touched">
+          Placement is required
+        </small>
+        </td>
+
+      </tr>
+      <tr>
+        <!-- Status icon-->
+        <td>
+          <i class="material-icons">local_activity</i>
+        </td>
+        <!-- Status-->
+        <td>
+          <md-select formControlName="statusControl" ng-model="statusSelect" #statusId class="full-width" placeholder="Status">
+            <md-option *ngFor="let status of status" value="{{status}}">{{status}}</md-option>
+          </md-select>
+          <!-- Status required validation-->
+          <small *ngIf="userForm.get('statusControl').hasError('required') && userForm.get('statusControl').touched">
+         Status is required
+        </small>
+        </td>
+
+      </tr>
+      <tr>
+        <!-- Language icon-->
+        <td>
+          <i class="material-icons">language</i>
+        </td>
+        <!-- Language-->
+        <td>
+          <md2-select (blur)="temp()" formControlName="languageControl" placeholder="Language" [multiple]="true" #selectMultipleControl>
+            <md2-option *ngFor="let language of languages" value="{{language}}">{{language}}</md2-option>
+          </md2-select>
+          <!-- Name required validation-->
+          <small *ngIf="userForm.get('languageControl').hasError('required') && userForm.get('languageControl').touched">
+          Language is required
+        </small>
+        </td>
+
+      </tr>
+      <tr>
+        <!-- Register button-->
+        <td colspan="3" class="text-center">
+          <span mdTooltip="All fields are required" mdTooltipPosition="above">
+          <button   [disabled]="!userForm.valid" type="submit"  md-button class="registerButton text-center" >Register</button>
+          </span>
+        </td>
+      </tr>
+
+    </table>
+  </form>
+
+</md-card>
