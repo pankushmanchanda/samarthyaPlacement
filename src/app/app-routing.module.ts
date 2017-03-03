@@ -16,30 +16,23 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'candidateRegister', component: CandidateRegisterComponent },
   { path: 'candidateSearch', component: CandidateSearchComponent },
   { path: 'eventPost', component: EventPostComponent },
   { path: 'jobPost', component: JobPostComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'register', component:AdminRegistrationComponent}
+  { path: 'register', component:AdminRegistrationComponent},
+    { path: 'register/:title', component:AdminRegistrationComponent}
+
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    
   ],
   exports: [RouterModule]
 
 })
 export class AppRoutingModule { };
 
-export const routingComponents = [
-  AboutUsComponent,
-  DashboardComponent,
-  CandidateRegisterComponent,
-  CandidateSearchComponent,
-  EventPostComponent,
-  JobPostComponent,
-  LogoutComponent,
-  AdminRegistrationComponent
-];
+

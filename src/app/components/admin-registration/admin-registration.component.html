@@ -1,5 +1,7 @@
 <md-card>
-  <h2 class="text-center title">Register Coordinator</h2>
+ <span mdTooltip="Register Admin or Coordinator or Supervisor" mdTooltipPosition="above">
+  <h2 class="text-center title">{{title}} Registration</h2>
+ </span>
 
   <form class="registrationForm" [formGroup]="userForm" (ngSubmit)="save(userForm)">
     <table>
@@ -55,9 +57,9 @@
           Email is required
         </small>
           <!-- Email pattern validation-->
-          <!--<small *ngIf="userForm.get('emailControl').hasError('pattern') && userForm.get('emailControl').touched">
+          <small *ngIf="userForm.get('emailControl').hasError('pattern') && userForm.get('emailControl').touched">
           Invalid email
-        </small>-->
+        </small>
         </td>
       </tr>
       <tr>
@@ -74,10 +76,15 @@
           <small *ngIf="userForm.get('passwordControl').hasError('required') && userForm.get('passwordControl').touched">
           Password is required
         </small>
-           <!--Password length validation-->
-          <!--<small *ngIf="userForm.get('passwordControl').hasError('minlength') && userForm.get('passwordControl').touched">
+         <!--Password length validation-->
+          <small *ngIf="userForm.get('passwordControl').hasError('minlength') && userForm.get('passwordControl').touched">
           Password should more than 7 character
-        </small> -->
+        </small> 
+          <!-- Matching password  validation-->
+            <small *ngIf="(!userForm.get('passwordControl').valid) && !userForm.get('passwordControl').hasError('required') &&!userForm.get('confirmPasswordControl').hasError('required') && userForm.get('passwordControl').touched">
+          Mismatch Password
+        </small>
+          
 
         </td>
       </tr>
@@ -93,16 +100,18 @@
           </md-input-container>
           <!-- Confirm password required validation-->
           <small *ngIf="userForm.get('confirmPasswordControl').hasError('required') && userForm.get('confirmPasswordControl').touched">
-          Confirm Password is required
+          Confirm Password is required 
         </small>
-          <!-- Matching password  validation-->
-          <small *ngIf="(!userForm.get('confirmPasswordControl').valid) && userForm.get('confirmPasswordControl').touched">
-          Mismatch Password
-        </small>
-           <!--Confirm Password length validation
+             <!--Confirm Password length validation-->
           <small *ngIf="userForm.get('confirmPasswordControl').hasError('minlength') && userForm.get('confirmPasswordControl').touched">
           Password should more than 7 character
-        </small>-->
+        </small>
+          <!-- Matching password  validation-->
+          <small *ngIf="(!userForm.get('confirmPasswordControl').valid) && !userForm.get('confirmPasswordControl').hasError('required') &&!userForm.get('passwordControl').hasError('required') && userForm.get('confirmPasswordControl').touched">
+          Mismatch Password
+        </small>
+        
+      
 
         </td>
       </tr>
@@ -114,7 +123,7 @@
         <!-- Mobile number-->
         <td colspan="2">
           <md-input-container class="full-width">
-            <input formControlName="mobileControl" mdInput placeholder="Mobile Number">
+            <input formControlName="mobileControl" mdInput placeholder="Mobile Number" >
           </md-input-container>
           <!-- Mobile number required validation-->
           <small *ngIf="userForm.get('mobileControl').hasError('required') && userForm.get('mobileControl').touched">
@@ -126,7 +135,19 @@
         </small>
         </td>
       </tr>
-      <tr>
+         <tr [hidden]="hiddenParticularRole">
+        <!-- Role icon-->
+        <td>
+          <i class="material-icons">supervisor_account</i>
+        </td>
+        <!-- Role  -->
+        <td>
+          <md-input-container class="full-width" >
+            <input formControlName="roleControl" mdInput placeholder="Role" [readonly]="disabled">
+          </md-input-container>
+        </td>
+      </tr>
+      <tr [hidden]="hiddenRole">
         <!-- Role icon-->
         <td>
           <i class="material-icons">supervisor_account</i>
@@ -134,8 +155,8 @@
         <!-- Role  -->
         <td>
 
-          <md2-select formControlName="roleControl" placeholder="Role" [multiple]="true" #selectMultipleControl>
-            <md2-option *ngFor="let currentRole of roles" value="{{currentRole}}">{{currentRole}}</md2-option>
+          <md2-select  formControlName="roleControl" placeholder="Role" [multiple]="true" #selectMultipleControl >
+            <md2-option *ngFor="let currentRole of roles" value="{{currentRole}}" >{{currentRole}}</md2-option>
           </md2-select>
 
           <!-- Role required validation-->
@@ -170,9 +191,20 @@
         <!-- PIN code-->
         <td colspan="2">
           <md-input-container class="full-width">
-            <input formControlName="pincodeControl" mdInput  placeholder="PIN Code">
+            <input (click)="locationDialog.open()" formControlName="locationControl" mdInput  placeholder="Location">
           </md-input-container>
-          <!-- PIN code required validation-->
+          
+         
+         <md2-dialog #locationDialog title="Give your Location">
+             <button (click)="showPincode()" type="button" class="pincodeButton"  md-button>Pick by pincode</button>
+         <button (click)="showMap()" type="button" class="pincodeButton"  md-button>Pick from Map</button>
+           <div [hidden]="pincodeHidden">
+             <md-input-container >
+            <input formControlName="pincodeControl" mdInput  placeholder="Pincode">
+          </md-input-container>
+          <button type="button" class="pincodeButton" md-button [disabled]="!userForm.get('pincodeControl').valid "  (click)="close(locationDialog)">Get Location</button>
+          
+           <!-- PIN code required validation-->
           <small *ngIf="userForm.get('pincodeControl').hasError('required') && userForm.get('pincodeControl').touched">
           PIN Code is required
         </small>
@@ -180,6 +212,19 @@
           <small *ngIf="userForm.get('pincodeControl').hasError('pattern') && userForm.get('pincodeControl').touched">
           PIN Code should be 6 digit
         </small>
+          </div>
+
+          <div [hidden]="mapHidden">
+           <sebm-google-map [latitude]="lat" [longitude]="lng">
+              <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+            </sebm-google-map>
+         </div><br>
+          <small *ngIf="userForm.get('locationControl').hasError('required') && userForm.get('locationControl').touched">
+          Location is required
+        </small>
+         </md2-dialog>
+
+         
         </td>
       </tr>
       <tr>
@@ -223,8 +268,10 @@
         </td>
         <!-- Language-->
         <td>
-          <md2-select (blur)="temp()" formControlName="languageControl" placeholder="Language" [multiple]="true" #selectMultipleControl>
-            <md2-option *ngFor="let language of languages" value="{{language}}">{{language}}</md2-option>
+          <md2-select  formControlName="languageControl" placeholder="Language" [multiple]="true" #selectMultipleControl>
+            <md2-option *ngFor="let language of languages" value="{{language}}">{{language}}
+
+            </md2-option>
           </md2-select>
           <!-- Name required validation-->
           <small *ngIf="userForm.get('languageControl').hasError('required') && userForm.get('languageControl').touched">
@@ -237,7 +284,7 @@
         <!-- Register button-->
         <td colspan="3" class="text-center">
           <span mdTooltip="All fields are required" mdTooltipPosition="above">
-          <button   [disabled]="!userForm.valid" type="submit"  md-button class="registerButton text-center" >Register</button>
+          <button  md-fab [disabled]="!userForm.valid" type="submit" ><md-icon>check</md-icon></button>
           </span>
         </td>
       </tr>

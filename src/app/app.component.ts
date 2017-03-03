@@ -8,11 +8,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
  navList = [
     { name: 'Dashboard', path: '/dashboard' },
-    { name: 'Register', path: '/candidateRegister' },
-    { name: 'Search', path: '/candidateSearch' },
+    { name: 'Coordinators/Supervisors', path: '/register'},
+    { name: 'Import', path: '/register'},
+    { name: 'Placement Centers', path: '/register'},
+    { name: 'Search Candidate', path: '/candidateSearch' },
     { name: 'Events', path: '/eventPost' },
     { name: 'Job Post', path: '/jobPost' },
     { name: 'About Us', path: '/aboutUs' },
-    { name: 'Register', path: '/register'}
   ];
 }
