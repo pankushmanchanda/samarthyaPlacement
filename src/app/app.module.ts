@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
@@ -18,7 +18,6 @@ import { JobPostComponent } from './components/job-post/job-post.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginLayoutComponent } from './components/login-layout/login-layout.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { AppbarComponent } from './components/appbar/appbar.component';
 import { AdminRegistrationComponent } from './components/admin-registration/admin-registration.component';
 import { AuthenticationService } from './services/authentication.service';
 import { PlacementRegisterService } from './services/placementRegister.service';
@@ -28,6 +27,7 @@ import { JsonDataService } from 'app/services/json-data.service';
 import { UiDetails } from 'app/services/uidetails.service';
 import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
 import { Data } from 'app/services/data.service';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
   imports: [
@@ -36,7 +36,11 @@ import { Data } from 'app/services/data.service';
     HttpModule,
     AppRoutingModule,
     MaterialModule.forRoot(),
-    Md2Module.forRoot()
+    Md2Module.forRoot(),
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAFrDXmfEyDR7DPrwGJYtmK4fAyXGgRic4'
+    })
   ],
   providers: [PlacementRegisterService, AuthenticationService, AuthGuard, JsonDataService, EmailService, UiDetails,Data],
   bootstrap: [AppComponent],
@@ -53,9 +57,7 @@ import { Data } from 'app/services/data.service';
     AppComponent,
     ControlMessagesComponent,
     LogoutComponent,
-    AppbarComponent,
     AdminRegistrationComponent,
-
-  ]
+]
 })
 export class AppModule { }

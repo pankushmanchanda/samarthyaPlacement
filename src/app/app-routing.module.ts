@@ -25,12 +25,14 @@ const routes: Routes = [
   { path: 'eventPost', component: EventPostComponent, canActivate: [AuthGuard] },
   { path: 'jobPost', component: JobPostComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
-  { path: 'register', component: AdminRegistrationComponent }
+   { path: 'register', component:AdminRegistrationComponent},
+    { path: 'register/:title', component:AdminRegistrationComponent}
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    
   ],
   exports: [RouterModule]
 
