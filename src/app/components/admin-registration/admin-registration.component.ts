@@ -44,14 +44,12 @@ hiddenRole:any;
 
         this.disabled="true";
     }
-    else
+    else if(this.title=='Admin')
     {
-      this.title="";
+      this.title="Admin";
       this.disabled="false";
      this.hiddenRole=false;
         this.hiddenParticularRole=true;
-
-      
     }
   }
 

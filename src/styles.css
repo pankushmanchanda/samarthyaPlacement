@@ -7,3 +7,12 @@
 .myFont {
     font-family: 'Noto Serif', serif;
 }
+
+/*userIcon and notification menus*/
+.mat-menu-panel{
+   
+   top: 40px;
+    right: 10px;
+    position: absolute;
+    
+}

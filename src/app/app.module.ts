@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import {Md2Module} from 'md2';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutUsComponent } from './components/about-us/about-us.component';
@@ -17,7 +18,12 @@ import { JobPostComponent } from './components/job-post/job-post.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AdminRegistrationComponent } from './components/admin-registration/admin-registration.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import {LoginHeaderComponent} from './components/login_registration_headerLayout/login-header/login-header.component';
+import {LoginFooterComponent} from './components/login_registration_headerLayout/login-footer/login-footer.component';
+import {AfterLoginHeaderComponent} from './components/afterLogin_registration_layout/headerLayout/headerLayout.component';
+import {FooterComponent} from './components/afterLogin_registration_layout/footerLayout/footer.component';
 
+import {JsonDataService} from './services/json-data.service';
 @NgModule({
   imports: [
     BrowserModule,
@@ -26,12 +32,13 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     FormsModule,
     MaterialModule.forRoot(),
     AppRoutingModule,
+    FlexLayoutModule,
     Md2Module.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAFrDXmfEyDR7DPrwGJYtmK4fAyXGgRic4'
     })
   ],
-  providers: [],
+  providers: [JsonDataService],
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
@@ -44,7 +51,11 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     EmployersComponent,
     EventPostComponent,
     JobPostComponent,
-    AdminRegistrationComponent
+    AdminRegistrationComponent,
+    LoginHeaderComponent,
+    LoginFooterComponent,
+    AfterLoginHeaderComponent,
+    FooterComponent
   ]
 })
 export class AppModule { }

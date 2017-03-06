@@ -9,19 +9,44 @@ import { EventPostComponent } from './components/event-post/event-post.component
 import { JobPostComponent } from './components/job-post/job-post.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AdminRegistrationComponent } from './components/admin-registration/admin-registration.component';
-
+import {AfterLoginHeaderComponent} from './components/afterLogin_registration_layout/headerLayout/headerLayout.component'
 
 // routes
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'aboutUs', component: AboutUsComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'candidateSearch', component: CandidateSearchComponent },
-  { path: 'eventPost', component: EventPostComponent },
-  { path: 'jobPost', component: JobPostComponent },
-  { path: 'logout', component: LogoutComponent },
+  {
+    path: 'home', component: AfterLoginHeaderComponent,
+    children: [
+      { path: '', component: DashboardComponent},//, canActivate: [AuthGuard] },
+      { path: 'aboutUs', component: AboutUsComponent },
+      { path: 'candidateSearch', component: CandidateSearchComponent },
+      { path: 'eventPost', component: EventPostComponent },
+      { path: 'jobPost', component: JobPostComponent },
+       { path: 'logout', component: LogoutComponent },
   { path: 'register', component:AdminRegistrationComponent},
-    { path: 'register/:title', component:AdminRegistrationComponent}
+    { path: 'register/:title', component:AdminRegistrationComponent},
+           { path: '**', component: DashboardComponent },
+
+    ]
+  },
+  //{ path: '', component: DashboardComponent},//, canActivate: [AuthGuard] },
+  { path: 'logout', component: LogoutComponent },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'forgotPassword', component: ForgotPasswordComponent },
+  // { path: 'candidateRegister', component: CandidateRegisterComponent },
+  // { path: 'verifyEmail', component: VerifyEmailComponent },
+  // { path: 'passwordReset', component: PasswordResetComponent },
+  // { path: '**', redirectTo: '/dashboard' }
+
+
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  // { path: 'aboutUs', component: AboutUsComponent },
+  // { path: 'dashboard', component: DashboardComponent },
+  // { path: 'candidateSearch', component: CandidateSearchComponent },
+  // { path: 'eventPost', component: EventPostComponent },
+  // { path: 'jobPost', component: JobPostComponent },
+  // { path: 'logout', component: LogoutComponent },
+  // { path: 'register', component:AdminRegistrationComponent},
+  //   { path: 'register/:title', component:AdminRegistrationComponent}
 
 ];
 
