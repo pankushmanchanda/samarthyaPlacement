@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 //import {CandidateRegister} from '../modal/candidate-register.modal';
 
 @Injectable()
-export class CandidateRegisterService {
+export class PlacementRegisterService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private url = 'http://localhost:3000/CandidateRegister'; 
   constructor(private http: Http) { }

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
-import { CandidateRegisterService } from '../../services/placementRegister.service';
+import { PlacementRegisterService } from '../../services/placementRegister.service';
 
 @Component({
   selector: 'app-admin-registration',
   templateUrl: './admin-registration.component.html',
   styleUrls: ['./admin-registration.component.css'],
-  providers: [CandidateRegisterService]
+  providers: [PlacementRegisterService]
 })
 export class AdminRegistrationComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class AdminRegistrationComponent implements OnInit {
   status = ['Active', 'Inactive'];
   public userForm: FormGroup;
 
-  constructor( @Inject(FormBuilder) fb: FormBuilder, private candidateRegisterService:CandidateRegisterService) {
+  constructor( @Inject(FormBuilder) fb: FormBuilder, private PlacementRegisterService:PlacementRegisterService) {
     this.userForm = fb.group({
       nameControl: ['', [Validators.required,Validators.pattern('[A-Za-z]{2,}')]],
       genderControl: ['', Validators.required],
@@ -69,7 +69,7 @@ temp(){
 
   save(userData): boolean {
     console.log(userData);
-    this.candidateRegisterService.add(userData);
+    this.PlacementRegisterService.add(userData);
     this.userForm.reset();
     window.alert("registered successfully");
      return true;

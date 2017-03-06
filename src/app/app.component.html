@@ -58,20 +58,20 @@
                     <md-list-item>
                         <p md-line>Change Password</p>
                     </md-list-item>
-                    <md-list-item routerLink="/logout" routerLinkActive="active">
+                    <md-list-item (click)="doLogOut()">
                         <p md-line>Log Out</p>
                     </md-list-item>
-                </md-nav-list>
-            </md-menu>
+         </md-nav-list>
+        </md-menu>
         </span>
     </md-toolbar>
     <!--main appbar starts-->
 
     <!--main ceiontent goes here-->
- 
-                <!--routing outlet-->
-                <router-outlet></router-outlet>
-     
+
+    <!--routing outlet-->
+    <router-outlet></router-outlet>
+
 
     <!--add the components tags here....-->
 
