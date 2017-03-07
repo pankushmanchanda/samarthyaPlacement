@@ -18,6 +18,7 @@ import { JobPostComponent } from './components/job-post/job-post.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginLayoutComponent } from './components/login-layout/login-layout.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AdminRegistrationComponent } from './components/admin-registration/admin-registration.component';
 import { AuthenticationService } from './services/authentication.service';
 import { PlacementRegisterService } from './services/placementRegister.service';
@@ -37,7 +38,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     AppRoutingModule,
     MaterialModule.forRoot(),
     Md2Module.forRoot(),
-    FormsModule,
+    FormsModule,  
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAFrDXmfEyDR7DPrwGJYtmK4fAyXGgRic4'
     })
@@ -58,6 +59,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     ControlMessagesComponent,
     LogoutComponent,
     AdminRegistrationComponent,
+    VerifyEmailComponent
 ]
 })
 export class AppModule { }

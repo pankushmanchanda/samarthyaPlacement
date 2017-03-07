@@ -5,9 +5,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class EmailService {
-  private _url: string = "http://localhost:3000";
+  private url: string = "/api/emailVerification";
   //   public data2 :LoginComponent  ;
-  constructor(private _http: Http) { }
+  constructor(private http: Http) { }
   postdata(mailObj: LoginComponent) {
     // var data1=JSON.stringify({to :"sheenamnarula1993@yahoo.com", subject:"abc", text:"hello" });
     var mailObjString = JSON.stringify(mailObj);
@@ -15,9 +15,8 @@ export class EmailService {
     var params = 'json=' + mailObjString;
     var res;
     var headers = new Headers();
- 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
-    return this._http.post(this._url, params, {
+    return this.http.post(this.url, params, {
       headers: headers
     }).map(res => res.json());
   }

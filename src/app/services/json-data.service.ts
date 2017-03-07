@@ -10,7 +10,7 @@ import { LoginComponent } from 'app/components/login/login.component';
 export class JsonDataService {
 
   // url to store data from json file for Registration details
-     private urlRegister: string = 'http://localhost:3001/candidates';
+  private urlRegister: string = 'http://localhost:3001/candidates';
 
   // url to retrive data from json file for languages
   private url: string = "jsonData/jsonData.json";

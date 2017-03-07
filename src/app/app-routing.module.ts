@@ -10,6 +10,7 @@ import { EmployersComponent } from './components/employers/employers.component';
 import { EventPostComponent } from './components/event-post/event-post.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AdminRegistrationComponent } from './components/admin-registration/admin-registration.component';
 import { AuthGuard } from './services/auth.guard';
 
@@ -25,14 +26,16 @@ const routes: Routes = [
   { path: 'eventPost', component: EventPostComponent, canActivate: [AuthGuard] },
   { path: 'jobPost', component: JobPostComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
-   { path: 'register', component:AdminRegistrationComponent},
-    { path: 'register/:title', component:AdminRegistrationComponent}
+   { path: 'register', component: AdminRegistrationComponent },
+  { path: 'register/:title', component: AdminRegistrationComponent },
+   { path: 'verifyEmail', component:VerifyEmailComponent }
+
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    
+
   ],
   exports: [RouterModule]
 
