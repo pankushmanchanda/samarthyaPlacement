@@ -4,6 +4,8 @@
 
 .mainHeader {
     top: 0px;
+    left: 0px;
+    right: 0px;
     position: fixed;
     z-index: 1000;
 }
@@ -11,8 +13,10 @@
 .langBar {
    
     background-color: #EEEEEE;
-    padding-left: 50px;
-    padding-right: 50px;
+    position: relative;
+    top:40px;
+     left: 0px;
+    right: 0px;
     text-align: center;
 }
 
@@ -44,46 +48,7 @@ md-select {
     color: white;
 }
 
-.footer {
-    opacity: .9;
-    display: block;
-    max-height: unset;
-    height: 150px;
-    /*display: block;*/
-    /*position: relative;*/
-}
 
-.footerHead {
-    margin: auto;
-    font-size: 20px;
-    text-align: center;
-    color: white;
-}
-
-.footerLinks {
-    /*padding-left: 30%;*/
-    color: white;
-}
-
-.footerLinks ul li a {
-    color: white;
-    font-size: 15px;
-    text-decoration: unset;
-}
-
-.footerLinks ul li {
-    list-style: none;
-}
-
-.copyright {
-    display: block;
-}
-
-.copyright p {
-    font-size: 15px;
-    padding: 0px;
-    margin: auto;
-}
 
 
 /*for smaller screens*/

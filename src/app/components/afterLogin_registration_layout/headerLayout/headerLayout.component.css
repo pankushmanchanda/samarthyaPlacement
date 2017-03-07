@@ -137,6 +137,14 @@ md-select {
     padding: 0px;
     margin: auto;
 }
+.material-icons{
+    font-weight: normal;
+    padding-right: 8px;
+}
+md-nav-list{
+    width: 200px;
+}
+
 
 
 /*for smaller screens*/

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
-import { CandidateRegisterService } from '../../services/placementRegister.service';
+import { PlacementRegisterService } from '../../services/placementRegister.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'app-admin-registration',
   templateUrl: './admin-registration.component.html',
   styleUrls: ['./admin-registration.component.css'],
-  providers: [CandidateRegisterService]
+  providers: [PlacementRegisterService]
 })
 export class AdminRegistrationComponent implements OnInit {
 
@@ -64,7 +64,7 @@ hiddenRole:any;
   //form name
   public userForm: FormGroup;
 
-  constructor( @Inject(FormBuilder) fb: FormBuilder, private candidateRegisterService: CandidateRegisterService,private route: ActivatedRoute,
+  constructor( @Inject(FormBuilder) fb: FormBuilder, private PlacementRegisterService:PlacementRegisterService,private route: ActivatedRoute,
   private router: Router,) {
     //building the form using FormBuilder and FormGroup
     this.userForm = fb.group({
@@ -119,8 +119,7 @@ hiddenRole:any;
 
 
   }
-
-  pincodeHidden:any=true;
+ pincodeHidden:any=true;
 showPincode()
 {
   if(this.pincodeHidden==true)
@@ -162,12 +161,9 @@ showMap()
     this.getPincode();
     dialog.close();
   }
-
- 
-
 //after submitting the form,it should executed and call service to add the data to json
   save(userData): boolean {
-    if(this.candidateRegisterService.add(userData)==true)
+    if(this.PlacementRegisterService.add(userData)==true)
     {
         this.userForm.reset();
          window.alert("registered successfully");

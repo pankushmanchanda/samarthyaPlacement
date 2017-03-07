@@ -11,7 +11,9 @@
 
         <!--sidenav ites list-->
         <md-nav-list>
+          
             <md-list-item *ngFor="let navItem of navList" routerLink={{navItem.path}} routerLinkActive="active" (click)="sidenav.toggle()">
+                 <i class="material-icons">{{navItem.icon}}</i>  
                 <p class="navItem"> {{navItem.name}}</p>
             </md-list-item>
         </md-nav-list>
@@ -50,16 +52,21 @@
             <md-menu class="menu" #menuAccount x-position="before">
                 <md-nav-list>
                     <md-list-item>
+    
                         <p md-line><b>User</b></p>
                     </md-list-item>
+                   
                     <md-list-item>
-                        <p md-line>Profile</p>
+                         <i class="material-icons">face</i> 
+                        <p>Profile</p>
                     </md-list-item>
                     <md-list-item>
-                        <p md-line>Change Password</p>
+                        <i class="material-icons">lock</i> 
+                        <p >Change Password</p>
                     </md-list-item>
-                    <md-list-item routerLink="/logout" routerLinkActive="active">
-                        <p md-line>Log Out</p>
+                    <md-list-item (click)="logoutUser()" routerLinkActive="active">
+                        <i class="material-icons">power_settings_new</i> 
+                        <p>Log Out</p>
                     </md-list-item>
                 </md-nav-list>
             </md-menu>

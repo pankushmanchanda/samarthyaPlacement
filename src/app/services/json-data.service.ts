@@ -4,15 +4,16 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { Router } from '@angular/router';
+import { LoginComponent } from 'app/components/login/login.component';
 
 @Injectable()
 export class JsonDataService {
 
   // url to store data from json file for Registration details
-  private urlRegister: string = 'http://localhost:3001/candidates';
+     private urlRegister: string = 'http://localhost:3001/candidates';
 
   // url to retrive data from json file for languages
-  private url: string = "jsonData/jsonData.json";
+  private url: string = "";
   public timer;
 
   constructor(private http: Http, private snackBar: MdSnackBar, private router: Router) { }
@@ -26,10 +27,11 @@ export class JsonDataService {
 
   // Store Registration details in json file
   create(formData) {
-    console.log('service called');
+
+
     this.http.post(this.urlRegister, formData).subscribe(data => {
       this.openSnackBar(formData.email, 'Register Successfully');
-      this.router.navigate(['/']);
+      this.timer = setTimeout(() => this.router.navigate(['/login']), 4000);
     }, error => {
       console.log(error.json());
     });
@@ -37,18 +39,19 @@ export class JsonDataService {
 
   // get json data for langauges and dropdown
   getJsonData() {
+    this.url= "http://localhost:3000/languages";
     return this.http.get(this.url).map((response: Response) => response.json());
   };
 
   getJsonNavList(){
-    this.url="jsonData/jsonData.json"
+    this.url="http://localhost:3000/navList"
     return this.http.get(this.url).map((response: Response) => response.json());
   }
 
-  // // get data for by verify email in database
-  // getEmail(email) {
-  //   return this.http.get(this.urlRegister + '?email=' + email).map((response: Response) => response.json());
-  // };
+ 
+  getEmail(email) {
+    return this.http.get(this.urlRegister + '?email=' + email).map((response: Response) => response.json());
+  };
 
 }
 

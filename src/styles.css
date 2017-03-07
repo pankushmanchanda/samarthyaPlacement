@@ -7,6 +7,9 @@
 .myFont {
     font-family: 'Noto Serif', serif;
 }
+body{
+    margin: 0px;
+}
 
 /*userIcon and notification menus*/
 .mat-menu-panel{
