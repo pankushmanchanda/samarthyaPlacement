@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response ,Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { Router } from '@angular/router';
 import { LoginComponent } from 'app/components/login/login.component';
-
 @Injectable()
 export class JsonDataService {
 
@@ -13,8 +12,9 @@ export class JsonDataService {
   private urlRegister: string = 'http://localhost:3001/candidates';
 
   // url to retrive data from json file for languages
-  private url: string = "jsonData/jsonData.json";
+  private url: string = "";
   public timer;
+private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http, private snackBar: MdSnackBar, private router: Router) { }
 
@@ -28,6 +28,7 @@ export class JsonDataService {
   // Store Registration details in json file
   create(formData) {
 
+
     this.http.post(this.urlRegister, formData).subscribe(data => {
       this.openSnackBar(formData.email, 'Register Successfully');
       this.timer = setTimeout(() => this.router.navigate(['/login']), 4000);
@@ -38,10 +39,27 @@ export class JsonDataService {
 
   // get json data for langauges and dropdown
   getJsonData() {
-    return this.http.get(this.url).map((response: Response) => response.json());
+    this.url = "/api/languages";
+    return this.http.get(this.url).map((response: Response) => response.json().data);
   };
 
-  // get data for by verify email in database
+  getJsonNavList(tokenVerification) {
+    this.url = '/api/layout/navigationlinks';
+    return this.http.get(this.url, this.authoriZation(tokenVerification))
+      .map((response: Response) => {
+        let body = response.json();
+        return body;
+      });
+  }
+ private authoriZation(userToken) {
+    if (userToken) {
+      let headers = new Headers({ 'Authorization': userToken });
+      return new RequestOptions({ headers: headers });
+    }
+
+  }
+
+
   getEmail(email) {
     return this.http.get(this.urlRegister + '?email=' + email).map((response: Response) => response.json());
   };

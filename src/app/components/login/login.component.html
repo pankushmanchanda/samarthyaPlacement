@@ -1,3 +1,4 @@
+<app-login-header></app-login-header>
 <!--login card-->
 <md-grid-list cols="1" rowHeight="600px">
     <md-grid-tile>
@@ -15,10 +16,11 @@
                         <div fxFlex="93">
                             <md-input-container class="full-width">
                                 <input mdInput formControlName="email" type="text" class="validate" placeholder="Email" />
-                                <md-hint align="start" class="full-width">
-                                    <app-control-messages [control]="userForm.controls.email" class="errorStyle"></app-control-messages>
-                                </md-hint>
+
                             </md-input-container>
+                            <small *ngIf="userForm.get('email').hasError('pattern')" align="start" class="full-width">
+                                    Invalid email
+                                </small>
                         </div>
                     </div>
 
@@ -30,10 +32,10 @@
                         <div fxFlex="93">
                             <md-input-container class="full-width">
                                 <input mdInput id="password" type="password" class="validate" formControlName="password" placeholder="Password">
-                                <md-hint align="start" class="full-width">
-                                    <app-control-messages [control]="userForm.controls.password" class="errorStyle"></app-control-messages>
-                                </md-hint>
                             </md-input-container>
+                            <small *ngIf="userForm.get('password').hasError('pattern')" align="start" class="full-width">
+                                    Password should contain uppercase and lowercase alphabets,minimum one digit/special characters
+                                </small>
                         </div>
                     </div>
 
@@ -81,3 +83,4 @@
         <!--card-ends-->
     </md-grid-tile>
 </md-grid-list>
+<app-login-footer></app-login-footer>

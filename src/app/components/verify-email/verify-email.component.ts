@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ValidationService } from '../../services/validation.service';
 import { EmailService } from 'app/services/email.service';
 import { JsonDataService } from 'app/services/json-data.service';
 import { ViewContainerRef } from '@angular/core';
@@ -26,7 +25,7 @@ export class VerifyEmailComponent implements OnInit {
   constructor( @Inject(FormBuilder) fb: FormBuilder, private emailservice: EmailService, private JsonDataService: JsonDataService,private data:Data, private viewContainerRef: ViewContainerRef, private router: Router) {
     // getting login form data
     this.userForm = fb.group({
-      email: ['', [Validators.required, ValidationService.emailValidator]],
+      email: ['', [Validators.required,Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
     });
   }
 

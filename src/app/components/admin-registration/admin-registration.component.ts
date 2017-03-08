@@ -24,7 +24,7 @@ export class AdminRegistrationComponent implements OnInit {
   hiddenRole: any;
 
   ngOnInit() {
-    this.route .params.subscribe(params => this.title = params['title']);
+    this.route.params.subscribe(params => this.title = params['title']);
     if (this.title == 'Coordinator') {
       this.userForm.patchValue({
         roleControl: "Coordinator"
@@ -42,12 +42,11 @@ export class AdminRegistrationComponent implements OnInit {
 
       this.disabled = "true";
     }
-    else {
-      this.title = "";
+    else if (this.title == 'Admin') {
+      this.title = "Admin";
       this.disabled = "false";
       this.hiddenRole = false;
       this.hiddenParticularRole = true;
-
 
     }
   }
@@ -64,7 +63,7 @@ export class AdminRegistrationComponent implements OnInit {
   public userForm: FormGroup;
 
   constructor( @Inject(FormBuilder) fb: FormBuilder, private PlacementRegisterService: PlacementRegisterService, private route: ActivatedRoute,
-    private router: Router ) {
+    private router: Router) {
     //building the form using FormBuilder and FormGroup
     this.userForm = fb.group({
       nameControl: ['', [Validators.required, Validators.pattern('[A-Za-z]{2,}')]],

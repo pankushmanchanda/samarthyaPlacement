@@ -1,3 +1,6 @@
+
+<app-login-header *ngIf="title=='Coordinator' || title=='Supervisor'"></app-login-header>
+<app-header *ngIf="title=='Admin'"></app-header>
 <md-card>
  <span mdTooltip="Register Admin or Coordinator or Supervisor" mdTooltipPosition="above">
   <h2 class="text-center title">{{title}} Registration</h2>
@@ -293,3 +296,5 @@
   </form>
 
 </md-card>
+<app-footer *ngIf="title=='Admin'"></app-footer>
+<app-login-footer *ngIf="title=='Coordinator' || title=='Supervisor'"></app-login-footer>

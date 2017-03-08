@@ -7,9 +7,8 @@ const https = require('https');
 
 // Get our API routes
 const api = require('./server/routes/api');
-const menuApi = require('./server/routes/menuApi');
-const app = express();
 
+const app = express();
 
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -20,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our api routes
 app.use('/api', api);
-app.use('/menuapi', menuApi);
+
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

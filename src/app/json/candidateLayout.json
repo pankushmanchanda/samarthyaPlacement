@@ -1,9 +1,0 @@
-{
- "data": [
-   
-		    {  "name": "Dashboard", "path": "/dashboard","icon":"dashboard" },
-   	 	    {  "name": "Applied Jobs", "path": "/applied-jobs" ,"icon":"home"},
-   		    {  "name": "Job Search", "path": "/job-search" ,"icon":"card_travel"},
-   		    {  "name": "Placement History", "path": "/placement-history","icon":"history" }
-
- ]}

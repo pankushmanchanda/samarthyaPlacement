@@ -21,7 +21,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() 
     {
       let tokenVerification=JSON.parse(localStorage.getItem('currentUser'))["token"];
-      
        this.uiDetails.getMenuDetails(tokenVerification)
           .subscribe(
           role => {

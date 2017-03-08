@@ -5,12 +5,21 @@ const jwt = require('jsonwebtoken');
 // declare axios for making http requests
 const axios = require('axios');
 app.set('jwtTokenSecret', 'somethinghere');
-
+// Get our API routes
+const layout = require('./layout');
+const json = require("../../src/app/jsonData/jsonData.json");
 
 const user = [{ username: "pankush@samarthya.com", password: "pankush@12", role: "Admin" },
     { username: "dheerendra@samarthya.com", password: "dheerendra@12", role: "Coordinator" },
     { username: "murga@samarthya.com", password: "murga@12", role: "Supervisor" }
 ];
+router.get('/languages', function(req, res) {
+    return res.json({
+        success: true,
+        data: json["languages"]
+    });
+
+});
 router.post('/authenticate', function(req, res, next) { 
     let params = req.body;
     let userDetails = user.filter(function(obj) {
@@ -47,7 +56,6 @@ router.use(function(req, res, next) {
     const token = req.body.token || req.query.token || req.headers['authorization'];
     // decode token
     if (token) {
-        console.log(token);
         // verifies secret and checks exp
         jwt.verify(token, app.get('jwtTokenSecret'), function(err, decoded) {
             if (err) {
@@ -70,23 +78,20 @@ router.use(function(req, res, next) {
 
     }
 });
-router.get('/navigationlinks', function(req, res) {
+router.use('/layout', layout);
 
-        return res.json({ success: true, message: "Authenticated", object: req.decoded });
-
-    })
-    //Get Token 
-    // Get all posts
-    // router.get('/posts', (req, res) => {
-    //     // Get posts from the mock api
-    //     // This should ideally be replaced with a service that connects to MongoDB
-    //     axios.get(`${API}/posts`)
-    //         .then(posts => {
-    //             res.status(200).json(posts.data);
-    //         })
-    //         .catch(error => {
-    //             res.status(500).send(error)
-    //         });
-    // });
+//Get Token 
+// Get all posts
+// router.get('/posts', (req, res) => {
+//     // Get posts from the mock api
+//     // This should ideally be replaced with a service that connects to MongoDB
+//     axios.get(`${API}/posts`)
+//         .then(posts => {
+//             res.status(200).json(posts.data);
+//         })
+//         .catch(error => {
+//             res.status(500).send(error)
+//         });
+// });
 
 module.exports = router;

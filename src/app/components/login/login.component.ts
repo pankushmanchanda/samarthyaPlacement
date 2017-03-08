@@ -1,7 +1,6 @@
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ValidationService } from '../../services/validation.service';
 import { EmailService } from 'app/services/email.service';
 import { JsonDataService } from 'app/services/json-data.service';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
@@ -12,7 +11,7 @@ import { AuthenticationService } from './../../services/authentication.service';
 import { UiDetails } from './../../services/uidetails.service';
 import { Data } from '../../services/data.service';
 
-import { Common } from '../../model/Common';
+import { Common } from '../../model/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,8 +36,8 @@ export class LoginComponent implements OnInit {
 
     // getting login form data
     this.userForm = fb.group({
-      email: ['', [Validators.required, ValidationService.emailValidator]],
-      password: ['', [Validators.required, ValidationService.passwordValidator]]
+      email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+      password: ['', [Validators.required,  Validators.pattern("[A-Za-z0-9.@!$*&]{6,}")]]
     });
   }
 
@@ -68,7 +67,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
       data => {
         this.data.openSnackBar(data["message"], 'Ok');
-              this.router.navigate(['/dashboard']);
+              this.router.navigate(['/home']);
       },
       error => {
         console.log(error);
@@ -77,6 +76,6 @@ export class LoginComponent implements OnInit {
   }
 
   redirect() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/home']);
   }
 }

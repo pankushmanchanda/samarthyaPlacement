@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const path = require('path');
 const util = require('util');
 const cors = require('cors');
 const smptp = require('smtp-server');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const rand, host, link; //verify code
 //const smtpTransport1 = require('./nodemailer/lib/smtp-transport');
 const usermail2;

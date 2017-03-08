@@ -1,6 +1,6 @@
 webpackJsonp([2,4],{
 
-/***/ 485:
+/***/ 500:
 /***/ (function(module, exports) {
 
 /*
@@ -57,7 +57,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 537:
+/***/ 552:
 /***/ (function(module, exports) {
 
 /*
@@ -310,16 +310,16 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 541:
+/***/ 556:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(758);
+var content = __webpack_require__(791);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(537)(content, {});
+var update = __webpack_require__(552)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -337,16 +337,16 @@ if(false) {
 
 /***/ }),
 
-/***/ 542:
+/***/ 557:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(759);
+var content = __webpack_require__(792);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(537)(content, {});
+var update = __webpack_require__(552)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -364,10 +364,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 758:
+/***/ 791:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(485)();
+exports = module.exports = __webpack_require__(500)();
 // imports
 
 
@@ -379,29 +379,29 @@ exports.push([module.i, "/**\n * Applies styles for users in high contrast mode.
 
 /***/ }),
 
-/***/ 759:
+/***/ 792:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(485)();
+exports = module.exports = __webpack_require__(500)();
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/icon?family=Material+Icons);", ""]);
 
 // module
-exports.push([module.i, "/*Theme Files for material design*/\r\n\r\n/*@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';*/\r\n\r\n.myFont {\r\n    font-family: 'Noto Serif', serif;\r\n}", ""]);
+exports.push([module.i, "/*Theme Files for material design*/\r\n\r\n/*@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';*/\r\n\r\n.myFont {\r\n    font-family: 'Noto Serif', serif;\r\n}\r\nbody{\r\n    margin: 0px;\r\n}\r\n\r\n/*userIcon and notification menus*/\r\n.mat-menu-panel{\r\n   \r\n   top: 40px;\r\n    right: 10px;\r\n    position: absolute;\r\n    \r\n}", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 868:
+/***/ 904:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(542);
-module.exports = __webpack_require__(541);
+__webpack_require__(557);
+module.exports = __webpack_require__(556);
 
 
 /***/ })
 
-},[868]);
+},[904]);
 //# sourceMappingURL=styles.bundle.map

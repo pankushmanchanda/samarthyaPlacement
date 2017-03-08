@@ -15,7 +15,7 @@ export class LoginLayoutComponent implements OnInit {
 
   ngOnInit() {
     // getting languages form json file
-    this.JsonDataService.getJsonData().subscribe(resJsonData => this.getdata(resJsonData['languages']));
+    this.JsonDataService.getJsonData().subscribe(resJsonData => this.getdata(resJsonData));
   }
   getdata(jsonData) {
     this.languages = jsonData;

@@ -14,7 +14,8 @@ import { AuthenticationService } from './services/authentication.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+
+export class AppComponent implements OnInit{
   loading: boolean = true;
 
   constructor(private authService: AuthenticationService) {

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PlacementRegisterService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private url = 'http://localhost:3000/CandidateRegister'; 
+  private url = 'http://localhost:3001/CandidateRegister'; 
   constructor(private http: Http) { }
  
   add(userdata):any  {
